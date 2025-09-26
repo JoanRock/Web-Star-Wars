@@ -82,9 +82,10 @@ document.getElementById('prevBtn').addEventListener('click', () => {
 });
 
 document.getElementById('nextBtn').addEventListener('click', () => {
-    currentId++;
-    fetchCharacter(currentId);
+    if (currentId < 82) {
+        currentId++
+        fetchCharacter(currentId);
+    }
 });
 
-// Initial load
 fetchCharacter(currentId);
