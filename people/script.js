@@ -71,7 +71,7 @@ function displayCharacters(characters) {
     characters.forEach(character => {
         html += `
             <div class="character">
-                <h3>${character.name}</h3>
+                <h3 href="https://swapi.dev/api/people/${character.characterId}/">${character.name}</h3>
                 <p><strong>Especie:</strong> ${character.species}</p>
                 <p><strong>Año de nacimiento:</strong> ${character.birthYear}</p>
             </div>
