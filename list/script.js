@@ -171,7 +171,7 @@ function displayCharacters() {
         } else {
             html += `
             <div class="character">
-                <a href="https://swapi.dev/api/people/${character.id}/" class="character-link" target="_blank">
+                <a href="../people/index.html#${character.id}/" class="character-link" target="_blank">
                     <h3>${character.name}</h3>
                 </a>
                 <p><strong>Especie:</strong> ${character.species}</p>
