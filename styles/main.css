@@ -5,7 +5,8 @@ body {
     padding: 20px;
     background-color: #101010;
 }
-.title{
+
+.title {
     font-size: 40px;
     color: yellow;
 }
@@ -16,6 +17,32 @@ body {
 .text{
     color: whitesmoke;
 }
+
+.button {
+    margin-top: 5px;
+    padding: 5px;
+    width: fit-content;
+    border: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: aliceblue;
+    color: aliceblue;
+}
+
+.button a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+.button:hover{
+    background-color:darkblue;
+}
+
+#searchlink{
+    margin: auto;
+    font-size: 28px;
+}
+
 .character {
     background-color: white;
     border-radius: 5px;
