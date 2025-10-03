@@ -10,11 +10,6 @@ body {
     display:flex;
 }
 
-a {
-  color: inherit; /* blue colors for links too */
-  text-decoration: inherit; /* no underline */
-}
-
 .title {
     font-size: 40px;
     font-weight: bold;
@@ -40,12 +35,19 @@ a {
     border-color: aliceblue;
     color: aliceblue;
 }
+
+.button a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
 .button:hover{
-    background-color: blueviolet;
+    background-color:darkblue;
 }
 
 #searchlink{
     margin: auto;
+    font-size: 28px;
 }
 
 .character {
