@@ -2,6 +2,8 @@ const apiBase = 'https://swapi.dev/api/people/';
 let currentId = 1;
 
 async function fetchCharacter(id) {
+        currentId = id;
+        window.location.hash = `#${id}`;
     try {
         const res = await fetch(`${apiBase}${id}/`);
         if (!res.ok) throw new Error('Character not found');
@@ -75,17 +77,25 @@ async function fetchCharacter(id) {
 }
 
 document.getElementById('prevBtn').addEventListener('click', () => {
-    if (currentId > 1) {
-        currentId--;
-        fetchCharacter(currentId);
-    }
+    if (currentId > 1) fetchCharacter(currentId - 1);
 });
 
 document.getElementById('nextBtn').addEventListener('click', () => {
-    if (currentId < 82) {
-        currentId++
+    if (currentId < 82) fetchCharacter(currentId + 1);
+});
+
+window.addEventListener('load', () => {
+    const hashId = parseInt(window.location.hash.substring(1));
+    if (hashId && hashId >= 1 && hashId <= 82) {
+        fetchCharacter(hashId);
+    } else {
         fetchCharacter(currentId);
     }
 });
 
-fetchCharacter(currentId);
+window.addEventListener('hashchange', () => {
+    const hashId = parseInt(window.location.hash.substring(1));
+    if (hashId && hashId >= 1 && hashId <= 82) {
+        fetchCharacter(hashId);
+    }
+});
