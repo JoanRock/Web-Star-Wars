@@ -11,8 +11,7 @@
     <div class="title">
         SWAPI (Grup 1)
     </div>
-    <div class="text" id="authornames">
-        per Àlex Hernández, Joan López, Dani, Ivan
+
     </div>
     
     <div class="button"><a href="people/">Personatges</a></div>
