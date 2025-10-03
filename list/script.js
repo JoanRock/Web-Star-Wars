@@ -2,13 +2,19 @@
 let currentPage = 1;
 let charactersPerPage = 10;
 let allCharacters = [];
+let search = window.location.hash ? window.location.hash.substring(1) : '';
 
-// Inicializar cuando la página carga
+
 document.addEventListener("DOMContentLoaded", function () {
     setupEventListeners();
     loadAllCharacters();
-});
 
+    window.addEventListener("hashchange", function () {
+        search = window.location.hash ? window.location.hash.substring(1) : '';
+        currentPage = 1;
+        loadAllCharacters();
+    });
+});
 // Configurar event listeners
 function setupEventListeners() {
     document.getElementById('charactersPerPage').addEventListener('change', function() {
@@ -50,14 +56,62 @@ function goToLastPage() {
 }
 
 // Cargar todos los personajes desde la API
+// Cargar todos los personajes desde la API
 async function loadAllCharacters() {
     const charactersList = document.getElementById("charactersList");
     charactersList.innerHTML = '<div class="loading">Cargando personajes...</div>';
 
     try {
-        const characterIds = await getAllCharacterIds();
-        const characterPromises = characterIds.map(id => getCharacterInfo(id));
-        allCharacters = await Promise.all(characterPromises);
+        let allData = [];
+        let nextUrl = `https://swapi.dev/api/people/?search=${search}`;
+
+        // Cache para especies (para no pedir lo mismo varias veces)
+        const speciesCache = {};
+
+        while (nextUrl) {
+            const response = await fetch(nextUrl);
+            if (!response.ok) throw new Error("Error en la API");
+
+            const data = await response.json();
+
+            // Procesar cada personaje del resultado
+            for (const character of data.results) {
+                let speciesName = "Humano";
+
+                if (character.species && character.species.length > 0) {
+                    const speciesUrl = character.species[0];
+
+                    if (speciesCache[speciesUrl]) {
+                        speciesName = speciesCache[speciesUrl];
+                    } else {
+                        try {
+                            const speciesResponse = await fetch(speciesUrl);
+                            if (speciesResponse.ok) {
+                                const speciesData = await speciesResponse.json();
+                                speciesName = speciesData.name;
+                                speciesCache[speciesUrl] = speciesName;
+                            }
+                        } catch (e) {
+                            console.warn("Error obteniendo especie:", e);
+                        }
+                    }
+                }
+
+                // Extraer ID del personaje
+                const id = extractIdFromUrl(character.url);
+
+                allData.push({
+                    id: id,
+                    name: character.name,
+                    species: speciesName,
+                    birthYear: character.birth_year
+                });
+            }
+
+            nextUrl = data.next; // siguiente página
+        }
+
+        allCharacters = allData;
         displayCharacters();
     } catch (error) {
         console.error("Error cargando personajes:", error);
@@ -66,30 +120,6 @@ async function loadAllCharacters() {
 }
 
 // Obtener todos los IDs de personajes disponibles
-async function getAllCharacterIds() {
-    let characterIds = [];
-    let nextUrl = 'https://swapi.dev/api/people/';
-    
-    try {
-        while (nextUrl) {
-            const response = await fetch(nextUrl);
-            const data = await response.json();
-            
-            data.results.forEach(character => {
-                const id = extractIdFromUrl(character.url);
-                if (id) characterIds.push(id);
-            });
-            
-            nextUrl = data.next;
-        }
-        
-        return characterIds;
-    } catch (error) {
-        console.error("Error obteniendo IDs de personajes:", error);
-        throw error;
-    }
-}
-
 // Extraer ID de la URL del personaje
 function extractIdFromUrl(url) {
     const match = url.match(/\/(\d+)\/$/);
@@ -97,46 +127,6 @@ function extractIdFromUrl(url) {
 }
 
 // Obtener información de un personaje (solo nombre, edad y especie)
-async function getCharacterInfo(characterId) {
-    try {
-        const response = await fetch(`https://swapi.dev/api/people/${characterId}/`);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const characterData = await response.json();
-
-        let speciesName = "Humano";
-        if (characterData.species && characterData.species.length > 0) {
-            try {
-                const speciesResponse = await fetch(characterData.species[0]);
-                if (speciesResponse.ok) {
-                    const speciesData = await speciesResponse.json();
-                    speciesName = speciesData.name;
-                }
-            } catch (speciesError) {
-                console.warn(`Error cargando especie para personaje ${characterId}:`, speciesError);
-            }
-        }
-
-        return {
-            id: characterId,
-            name: characterData.name,
-            species: speciesName,
-            birthYear: characterData.birth_year
-        };
-    } catch (error) {
-        console.error(`Error cargando personaje ${characterId}:`, error);
-        return {
-            id: characterId,
-            name: `Personaje ${characterId}`,
-            species: "Desconocida",
-            birthYear: "Desconocido",
-            error: true,
-        };
-    }
-}
 
 // Mostrar personajes en la página actual
 function displayCharacters() {
@@ -144,7 +134,7 @@ function displayCharacters() {
     const statsElement = document.getElementById("stats");
 
     if (allCharacters.length === 0) {
-        charactersList.innerHTML = '<div class="error">No se pudieron cargar los personajes.</div>';
+        charactersList.innerHTML = '<div class="error">No se ha encontrado ningun personaje.</div>';
         return;
     }
 
@@ -171,7 +161,7 @@ function displayCharacters() {
         } else {
             html += `
             <div class="character">
-                <a href="../people/index.html#${character.id}/" class="character-link" target="_blank">
+                <a href="../people/index.html#${character.id}/" class="character-link">
                     <h3>${character.name}</h3>
                 </a>
                 <p><strong>Especie:</strong> ${character.species}</p>
