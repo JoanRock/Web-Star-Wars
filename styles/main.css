@@ -1,21 +1,28 @@
 body {
     font-family: "Audiowide", Arial, sans-serif;
-    max-width: 800px;
+    width: 100%;
+    max-width: 75%;
+    height: 90vh;
     margin: 0 auto;
     padding: 20px;
-    background-color: #101010;
+    background-color: #150027;
+    position: relative;
+    display:flex;
 }
 
 .title {
     font-size: 40px;
+    font-weight: bold;
     color: yellow;
 }
-.subtitle{
+
+.subtitle {
     font-size: 28px;
-    color:yellow;
+    color: yellow;
 }
-.text{
-    color: whitesmoke;
+
+.text {
+    color: aliceblue;
 }
 
 .button {
@@ -48,14 +55,20 @@ body {
     border-radius: 5px;
     padding: 15px;
     margin: 10px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .loading {
     text-align: center;
     padding: 20px;
 }
+
 .error {
     color: red;
     text-align: center;
     padding: 20px;
+}
+
+#authornames {
+    font-family: "Quintessential", 'Times New Roman', Times, serif;
 }
