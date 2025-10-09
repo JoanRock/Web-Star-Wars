@@ -7,28 +7,58 @@
     </style>
 </head>
 <body>
-    <header>
-        <a href="../index.html">
-        <img src = "../estrella-de-la-muerte.png" height="50"></img>
-        </a>
-        <p><a href="../list" >Personatges</a></p>
-        <p><a href="">Planetes</a></p>
-        <p><a href="">Naus</a></p>
-        <p><a href="">Espècies</a></p>
-        <p><a href="">Vehicles</a></p>
-        <p><a href="">Pel·lícules</a></p>
-        <div class="search">
-        <input type="text" id="searchInput" placeholder="Cerca...">
-        <button type="button" id="searchButton">Cerca</button>
-        </div>
-        <script>
-        document.getElementById('searchButton').addEventListener('click', function() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (query) {
-            window.location.href = `../list/#${encodeURIComponent(query)}`;
-            }
-        });
-        </script>
+<header>
+  <a href="../index.html">
+    <img src="../estrella-de-la-muerte.png" height="50" alt="Logo">
+  </a>
+  
+  <div class="search">
+    <input type="text" id="searchInput" placeholder="Cerca...">
+    <button type="button" id="searchButton">Cerca</button>
+  </div>
+  <br>
+
+  <button class="tipo-btn activo" data-tipo="characters">Personatges</button>
+  <button class="tipo-btn" data-tipo="planets">Planetes</button>
+  <button class="tipo-btn" data-tipo="starships">Naus</button>
+  <button class="tipo-btn" data-tipo="species">Espècies</button>
+  <button class="tipo-btn" data-tipo="vehicles">Vehicles</button>
+  <button class="tipo-btn" data-tipo="films">Pel·lícules</button>
+
+
+  <script>
+    let listTipoDeBusqueda = "characters";
+
+    const botones = document.querySelectorAll(".tipo-btn");
+
+    botones.forEach(boton => {
+      boton.addEventListener("click", () => {
+        botones.forEach(b => b.classList.remove("activo"));
+        boton.classList.add("activo");
+        listTipoDeBusqueda = boton.dataset.tipo;
+      });
+    });
+
+    document.getElementById("searchButton").addEventListener("click", function () {
+      const query = document.getElementById("searchInput").value.trim();
+      if (query) {
+        window.location.href = `../list/${listTipoDeBusqueda}List.html#${encodeURIComponent(query)}`;
+      }
+    });
+  </script>
+
+  <style>
+
+    .tipo-btn:hover {
+        color: white;
+      background-color: #333;
+    }
+
+    .tipo-btn.activo {
+      background-color: #fff898;
+    }
+  </style>
+</header>
     </header>
     <div class="container">
         <h1 id ="name"></h1>
