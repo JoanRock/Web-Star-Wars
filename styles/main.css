@@ -7,13 +7,35 @@ body {
     padding: 20px;
     background-color: #150027;
     position: relative;
-    /* display:flex; */
 }
 
-header .inline {
+button {
+    background-color: #150027;
+    font-family: "Audiowide", Arial, sans-serif;
+    padding: 7px;
+    color: aliceblue;
+    border: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: aliceblue;
+}
+
+button:hover {
+    background-color: darkblue;
+}
+
+button.activo{
+    background-color: aliceblue;
+    color: #150027;
+}
+
+.inline {
     float: left;
-    overflow: hidden;
     width: 100%;
+}
+
+header {
+    overflow: hidden;
 }
 
 .dreta {
@@ -23,14 +45,13 @@ header .inline {
 #searchInput {
     font-family: "Audiowide", Arial, sans-serif;
     background-color: #150027;
-    width: 250px;
+    width: 200px;
     margin: auto;
     padding: 10px;
 }
 
-.dreta .button {
+.dreta button {
     margin-left: 10px;
-    float: inline-end;
 }
 
 header .button {
