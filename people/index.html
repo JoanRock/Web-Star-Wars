@@ -1,88 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Star Wars Character</title>
-    <style>
-    </style>
+  <meta charset="UTF-8">
+  <title>Star Wars Character</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/estrelles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
 </head>
+
 <body>
-<header>
-  <a href="../index.html">
-    <img src="../estrella-de-la-muerte.png" height="50" alt="Logo">
-  </a>
-  
-  <div class="search">
-    <input type="text" id="searchInput" placeholder="Cerca...">
-    <button type="button" id="searchButton">Cerca</button>
-  </div>
-  <br>
+  <header>
+    <a href="../index.html">
+      <img src="../estrella-de-la-muerte.png" height="50" alt="Logo">
+    </a>
 
-  <button class="tipo-btn activo" data-tipo="characters">Personatges</button>
-  <button class="tipo-btn" data-tipo="planets">Planetes</button>
-  <button class="tipo-btn" data-tipo="starships">Naus</button>
-  <button class="tipo-btn" data-tipo="species">Espècies</button>
-  <button class="tipo-btn" data-tipo="vehicles">Vehicles</button>
-  <button class="tipo-btn" data-tipo="films">Pel·lícules</button>
-
-
-  <script>
-    let listTipoDeBusqueda = "characters";
-
-    const botones = document.querySelectorAll(".tipo-btn");
-
-    botones.forEach(boton => {
-      boton.addEventListener("click", () => {
-        botones.forEach(b => b.classList.remove("activo"));
-        boton.classList.add("activo");
-        listTipoDeBusqueda = boton.dataset.tipo;
-      });
-    });
-
-    document.getElementById("searchButton").addEventListener("click", function () {
-      const query = document.getElementById("searchInput").value.trim();
-      if (query) {
-        window.location.href = `../list/${listTipoDeBusqueda}List.html#${encodeURIComponent(query)}`;
-      }
-    });
-  </script>
-
-  <style>
-
-    .tipo-btn:hover {
-        color: white;
-      background-color: #333;
-    }
-
-    .tipo-btn.activo {
-      background-color: #fff898;
-    }
-  </style>
-</header>
-    </header>
-    <div class="container">
-        <h1 id ="name"></h1>
-        <div class="character-info">
-            <div><span class="label">Alçada: </span> <span class="value" id = "height"></span></div>
-            <div><span class="label">Pes: </span> <span class="value" id = "mass"></span></div>
-            <div><span class="label">Color del cabell: </span> <span class="value" id = "hair_color"></span></div>
-            <div><span class="label">Color de la pell: </span> <span class="value" id = "skin_color"></span></div>
-            <div><span class="label">Color dels ulls: </span> <span class="value" id = "eye_color"></span></div>
-            <div><span class="label">Any de naixement: </span> <span class="value" id = "birth_year"></span></div>
-            <div><span class="label">Gènere: </span> <span class="value" id = "gender"></span></div>
-            <div><span class="label">Planeta natal: </span> <span class="value" id = "homeworld"></span></div>
-            <div><span class="label">Especie: </span> <span class="value" id = "species"></span></div>
-            <div><span class="label">Pel·lícules: </span> <span class="value" id = "films"></span></div>
-            <div><span class="label">Vehicles: </span> <span class="value" id = "vehicles"></span></div>
-            <div><span class="label">Naus: </span> <span class="value" id = "starships"></span></div>
-        </div>
-        <br>
-        <div>
-            <button id="prevBtn">Pàgina anterior</button>
-            <button id="nextBtn">Pàgina Següent</button>
-            <br>
-        </div>
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Cerca...">
+      <button type="button" id="searchButton">Cerca</button>
     </div>
+    <br>
+
+    <button class="tipo-btn activo" data-tipo="characters">Personatges</button>
+    <button class="tipo-btn" data-tipo="planets">Planetes</button>
+    <button class="tipo-btn" data-tipo="starships">Naus</button>
+    <button class="tipo-btn" data-tipo="species">Espècies</button>
+    <button class="tipo-btn" data-tipo="vehicles">Vehicles</button>
+    <button class="tipo-btn" data-tipo="films">Pel·lícules</button>
+
+
+    <script>
+      let listTipoDeBusqueda = "characters";
+
+      const botones = document.querySelectorAll(".tipo-btn");
+
+      botones.forEach(boton => {
+        boton.addEventListener("click", () => {
+          botones.forEach(b => b.classList.remove("activo"));
+          boton.classList.add("activo");
+          listTipoDeBusqueda = boton.dataset.tipo;
+        });
+      });
+
+      document.getElementById("searchButton").addEventListener("click", function () {
+        const query = document.getElementById("searchInput").value.trim();
+        if (query) {
+          window.location.href = `../list/${listTipoDeBusqueda}List.html#${encodeURIComponent(query)}`;
+        }
+      });
+    </script>
+
+    <style>
+      .tipo-btn:hover {
+        color: white;
+        background-color: #333;
+      }
+
+      .tipo-btn.activo {
+        background-color: #fff898;
+      }
+    </style>
+  </header>
+  </header>
+  <div class="container">
+    <h1 id="name"></h1>
+    <div class="character-info">
+      <div><span class="label">Alçada: </span> <span class="value" id="height"></span></div>
+      <div><span class="label">Pes: </span> <span class="value" id="mass"></span></div>
+      <div><span class="label">Color del cabell: </span> <span class="value" id="hair_color"></span></div>
+      <div><span class="label">Color de la pell: </span> <span class="value" id="skin_color"></span></div>
+      <div><span class="label">Color dels ulls: </span> <span class="value" id="eye_color"></span></div>
+      <div><span class="label">Any de naixement: </span> <span class="value" id="birth_year"></span></div>
+      <div><span class="label">Gènere: </span> <span class="value" id="gender"></span></div>
+      <div><span class="label">Planeta natal: </span> <span class="value" id="homeworld"></span></div>
+      <div><span class="label">Especie: </span> <span class="value" id="species"></span></div>
+      <div><span class="label">Pel·lícules: </span> <span class="value" id="films"></span></div>
+      <div><span class="label">Vehicles: </span> <span class="value" id="vehicles"></span></div>
+      <div><span class="label">Naus: </span> <span class="value" id="starships"></span></div>
+    </div>
+    <br>
+    <div>
+      <button id="prevBtn">Pàgina anterior</button>
+      <button id="nextBtn">Pàgina Següent</button>
+      <br>
+    </div>
+  </div>
 </body>
 <script src="paginaPersonatge.js"></script>
 

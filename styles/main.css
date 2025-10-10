@@ -7,7 +7,21 @@ body {
     padding: 20px;
     background-color: #150027;
     position: relative;
-    display:flex;
+    /* display:flex; */
+}
+
+header .inline{
+    float: left;
+    overflow: hidden;
+    width: 100%;
+}
+
+.dreta{
+    float: right;
+}
+
+header .button{
+    float: left;
 }
 
 .title {
@@ -36,6 +50,11 @@ body {
     color: aliceblue;
 }
 
+.button.active{
+    background-color: aliceblue;
+    color: #150027;
+}
+
 .button a {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
@@ -45,17 +64,25 @@ body {
     background-color:darkblue;
 }
 
+.button.button.active:hover{
+    background-color:aliceblue;
+}
+
 #searchlink{
     margin: auto;
     font-size: 28px;
 }
 
 .character {
-    background-color: white;
+    background-color:darkslateblue;
     border-radius: 5px;
     padding: 15px;
     margin: 10px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.character a{
+    color:inherit;
 }
 
 .loading {

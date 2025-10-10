@@ -1,97 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personajes de Star Wars</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f5f5f5;
-      }
-      h1 {
-        color: #333;
-        text-align: center;
-      }
-      .character {
-        background-color: white;
-        border-radius: 5px;
-        padding: 15px;
-        margin: 10px 0;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-      .loading {
-        text-align: center;
-        padding: 20px;
-      }
-      .error {
-        color: red;
-        text-align: center;
-        padding: 20px;
-      }
-    </style>
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Personajes de Star Wars</title>
-        <link rel="stylesheet" href="style.css" />
-      </head>
-      <body>
-          <header>
-            <a href="../index.html">
-            <img src = "../estrella-de-la-muerte.png" height="50"></img>
-            </a>
-            <p><a href="../list" >Personatges</a></p>
-            <p><a href="">Planetes</a></p>
-            <p><a href="">Naus</a></p>
-            <p><a href="">Espècies</a></p>
-            <p><a href="">Vehicles</a></p>
-            <p><a href="">Pel·lícules</a></p>
-            <div class="search">
-              <input type="text" id="searchInput" placeholder="Cerca...">
-              <button type="button" id="searchButton">Cerca</button>
-            </div>
-        <script>
-          document.getElementById('searchButton').addEventListener('click', function() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (query) {
-              window.location.href = `../list/#${encodeURIComponent(query)}`;
-            }
-          });
-        </script>
-        </header>
-        <h1>Personajes de Star Wars</h1>
-        <div class="characters-per-page">
-          <label for="charactersPerPage">Personajes por página:</label>
-          <select id="charactersPerPage">
-            <option value="5">5</option>
-            <option value="10" selected>10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-          </select>
-        </div>
-        <div class="stats" id="stats"></div>
-        <div id="charactersList"></div>
-        <div class="pagination">
-          <button id="firstPage">Primera</button>
-          <button id="prevPage">Anterior</button>
-          <span class="page-info" id="pageInfo">Página 1 de 1</span>
-          <button id="nextPage">Siguiente</button>
-          <button id="lastPage">Última</button>
-        </div>
 
-        <script src="script.js"></script>
-      </body>
-    </html>
-  </head>
-  <body>
-    <h1>Personajes de Star Wars</h1>
-    <div id="charactersList"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personajes de Star Wars</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/estrelles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+</head>
 
-    <script src="script.js"></script>
-  </body>
+<body>
+  <!-- <div class="fons"> -->
+  <div class="stars1"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+  <header>
+    <span class="inline">
+      <a href="../index.html">
+        <img src="../images/estrella-de-la-muerte_dark.png" height="50"></img>
+      </a>
+      <div class="search dreta">
+        <input class="text" id="searchInput" placeholder="Cerca...">
+        <br>
+        <button class="button" id="searchButton">Cerca</button>
+      </div>
+      <script>
+        document.getElementById('searchButton').addEventListener('click', function () {
+          const query = document.getElementById('searchInput').value.trim();
+          if (query) {
+            window.location.href = `../list/#${encodeURIComponent(query)}`;
+          }
+        });
+      </script>
+    </span>
+    <span class="inline">
+      <nav>
+        <div class="button active"><a href="../list/charactersList.html">Personatges</a></div>
+        <div class="button"><a href="">Planetes</a></div>
+        <div class="button"><a href="">Naus</a></div>
+        <div class="button"><a href="">Espècies</a></div>
+        <div class="button"><a href="">Vehicles</a></div>
+        <div class="button"><a href="">Pel·lícules</a></div>
+      </nav>
+    </span>
+  </header>
+
+  <div class="title">Personajes de Star Wars</div>
+  <div class="text characters-per-page">
+    <label for="charactersPerPage">Personajes por página:</label>
+    <select id="charactersPerPage">
+      <option value="5">5</option>
+      <option value="10" selected>10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+  </div>
+  <div class="text stats" id="stats"></div>
+  <div class ="text" id="charactersList"></div>
+  <div class="text pagination">
+    <button id="firstPage">Primera</button>
+    <button id="prevPage">Anterior</button>
+    <span class="page-info" id="pageInfo">Página 1 de 1</span>
+    <button id="nextPage">Siguiente</button>
+    <button id="lastPage">Última</button>
+  </div>
+  <!-- </div> -->
+  <script src="script.js"></script>
+</body>
+
 </html>
-
