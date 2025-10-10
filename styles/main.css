@@ -10,18 +10,32 @@ body {
     /* display:flex; */
 }
 
-header .inline{
+header .inline {
     float: left;
     overflow: hidden;
     width: 100%;
 }
 
-.dreta{
+.dreta {
     float: right;
 }
 
-header .button{
+#searchInput {
+    font-family: "Audiowide", Arial, sans-serif;
+    background-color: #150027;
+    width: 250px;
+    margin: auto;
+    padding: 10px;
+}
+
+.dreta .button {
+    margin-left: 10px;
+    float: inline-end;
+}
+
+header .button {
     float: left;
+    margin-right: 10px;
 }
 
 .title {
@@ -50,39 +64,41 @@ header .button{
     color: aliceblue;
 }
 
-.button.active{
+.button.active {
     background-color: aliceblue;
     color: #150027;
 }
 
 .button a {
-  color: inherit; /* blue colors for links too */
-  text-decoration: inherit; /* no underline */
+    color: inherit;
+    /* blue colors for links too */
+    text-decoration: inherit;
+    /* no underline */
 }
 
-.button:hover{
-    background-color:darkblue;
+.button:hover {
+    background-color: darkblue;
 }
 
-.button.button.active:hover{
-    background-color:aliceblue;
+.button.active:hover {
+    background-color: aliceblue;
 }
 
-#searchlink{
+#searchlink {
     margin: auto;
     font-size: 28px;
 }
 
 .character {
-    background-color:darkslateblue;
+    background-color: darkslateblue;
     border-radius: 5px;
     padding: 15px;
     margin: 10px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.character a{
-    color:inherit;
+.character a {
+    color: inherit;
 }
 
 .loading {
